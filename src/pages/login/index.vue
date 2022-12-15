@@ -6,14 +6,27 @@
       <div class="login-form">
         <el-form ref="loginFormRef" :model="loginForm" :rules="rules" label-width="120px">
           <el-form-item label="用户名" prop="username">
-            <el-input v-model="loginForm.username" type="text" @keyup.enter="submitForm(loginFormRef)" />
+            <el-input
+              v-model="loginForm.username"
+              type="text"
+              @keyup.enter="submitForm(loginFormRef)"
+            />
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="loginForm.password" type="password" autocomplete="off"
-              @keyup.enter="submitForm(loginFormRef)" />
+            <el-input
+              v-model="loginForm.password"
+              type="password"
+              autocomplete="off"
+              @keyup.enter="submitForm(loginFormRef)"
+            />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" class="login-button" :loading="loading" @click="submitForm(loginFormRef)">
+            <el-button
+              type="primary"
+              class="login-button"
+              :loading="loading"
+              @click="submitForm(loginFormRef)"
+            >
               登录
             </el-button>
           </el-form-item>

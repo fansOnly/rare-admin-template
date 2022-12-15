@@ -1,15 +1,30 @@
 <template>
   <div class="et-layout-sidebar" :style="{ height: height + 'px' }">
     <div class="et-layout-sidebar__logo">
-      <el-image :src="logo2" fit="contain" alt="logo" :class="{ 'is-height': !appStore.isCollapse }" />
-      <div v-show="!appStore.isCollapse" class="et-layout-sidebar__title">{{ appStore.appName }}</div>
+      <el-image
+        :src="logo2"
+        fit="contain"
+        alt="logo"
+        :class="{ 'is-height': !appStore.isCollapse }"
+      />
+      <div v-show="!appStore.isCollapse" class="et-layout-sidebar__title">
+        {{ appStore.appName }}
+      </div>
     </div>
     <el-scrollbar class="et-layout-menu" noresize>
-      <el-menu :default-active="route.meta.id" :collapse="appStore.isCollapse" unique-opened
-        :collapse-transition="false">
+      <el-menu
+        :default-active="route.meta.id"
+        :collapse="appStore.isCollapse"
+        unique-opened
+        :collapse-transition="false"
+      >
         <template v-for="menu in routeStore.userRoutes">
-          <el-menu-item v-if="!menu?.children?.length" :key="menu.menuId" :index="menu.menuId"
-            @click="handleClickMenu(menu)">
+          <el-menu-item
+            v-if="!menu?.children?.length"
+            :key="menu.menuId"
+            :index="menu.menuId"
+            @click="handleClickMenu(menu)"
+          >
             <el-icon v-if="menu.menuIcon">
               <component :is="menu.menuIcon" />
             </el-icon>
@@ -23,8 +38,12 @@
               <span>{{ menu.menuTitle }}</span>
             </template>
             <template v-for="second in menu.children">
-              <el-menu-item v-if="!second?.children?.length" :key="second.menuId" :index="second.menuId"
-                @click="handleClickMenu(second)">
+              <el-menu-item
+                v-if="!second?.children?.length"
+                :key="second.menuId"
+                :index="second.menuId"
+                @click="handleClickMenu(second)"
+              >
                 <el-icon v-if="second.menuIcon">
                   <component :is="second.menuIcon" />
                 </el-icon>
@@ -37,8 +56,12 @@
                   </el-icon>
                   <span>{{ second.menuTitle }}</span>
                 </template>
-                <el-menu-item v-for="third in second.children" :key="third.menuId" :index="third.menuId"
-                  @click="handleClickMenu(third)">
+                <el-menu-item
+                  v-for="third in second.children"
+                  :key="third.menuId"
+                  :index="third.menuId"
+                  @click="handleClickMenu(third)"
+                >
                   <el-icon v-if="third.menuIcon">
                     <component :is="third.menuIcon" />
                   </el-icon>
