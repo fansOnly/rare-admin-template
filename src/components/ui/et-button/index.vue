@@ -1,7 +1,7 @@
 <template>
   <div
     :class="['et-button', `et-button--${type}`, round ? `et-button--${round}` : null]"
-    @click="emits('click')"
+    @click="emit('click')"
   >
     <slot name="default">{{ buttonText }}</slot>
   </div>
@@ -9,10 +9,6 @@
 
 <script setup lang="ts">
 import { NOOP } from '@/utils'
-
-defineOptions({
-  name: 'EtButton'
-})
 
 interface Props {
   type: string
@@ -24,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   round: false,
   buttonText: ''
 })
-const emits = defineEmits<{
+const emit = defineEmits<{
   (e: 'click'): void
 }>()
 

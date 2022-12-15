@@ -1,4 +1,4 @@
-import type { FormRules, FormItemProps } from 'element-plus'
+import type { FormItemProps } from 'element-plus'
 type useTableApi = <T>(params: T) => Promise<any>
 
 export const useTablePage = (formItems: FormItemProps[], api: useTableApi) => {

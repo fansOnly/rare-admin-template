@@ -103,8 +103,6 @@
     // 禁止在 return 语句中使用赋值语句
     "no-return-assign": "error",
     "no-sequences": "error", // 禁用逗号操作符
-    // 禁止在函数标识符和其调用之间有空格 --fix
-    "func-call-spacing": "warn",
     // 不允许初始化变量值为 undefined --fix
     "no-undef-init": "error",
     // 禁止可以表达为更简单结构的三元操作符 --fix

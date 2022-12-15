@@ -1,8 +1,4 @@
 import { httpPost } from '@/common/http'
-import { BaseResult } from './model/base-model'
-import { LoginParams, loginModel, RouteListModel } from './model/core-model'
-
-import type { UserRoutesParams } from './model/core-model'
 
 enum CoreApi {
   login = '/core/login',
@@ -11,11 +7,10 @@ enum CoreApi {
 }
 
 // 用户登录
-export const login = (params: LoginParams) => httpPost<loginModel>(CoreApi.login, params)
+export const login = <T>(params: object) => httpPost<T>(CoreApi.login, params)
 
 // 用户登出
-export const logout = () => httpPost<BaseResult>(CoreApi.logout)
+export const logout = <T>() => httpPost<T>(CoreApi.logout)
 
 // 获取路由列表
-export const qryUserRoutes = (params: UserRoutesParams) =>
-  httpPost<RouteListModel>(CoreApi.qryUserRoutes, params)
+export const qryUserRoutes = <T>(params: object) => httpPost<T>(CoreApi.qryUserRoutes, params)

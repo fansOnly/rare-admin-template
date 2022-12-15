@@ -1,13 +1,4 @@
 import { httpPost } from '@/common/http'
-import { BaseResult } from './model/base-model'
-import {
-  DemoListModel,
-  DemoModel,
-  IdQryParams,
-  IdListParams,
-  DemoListQryParams,
-  DemoItemParams
-} from './model/demo-model'
 
 enum DemoApi {
   qryDemoList = '/demo/qryDemoList',
@@ -18,18 +9,16 @@ enum DemoApi {
 }
 
 // 获取列表示例接口
-export const qryDemoList = (params: DemoListQryParams) =>
-  httpPost<DemoListModel>(DemoApi.qryDemoList, params)
+export const qryDemoList = <T>(params: object) => httpPost<T>(DemoApi.qryDemoList, params)
 
 // 获取详情示例接口
-export const qryDemoDetail = (params: IdQryParams) => httpPost<DemoModel>(DemoApi.qryDemo, params)
+export const qryDemoDetail = <T>(params: object) => httpPost<T>(DemoApi.qryDemo, params)
 
 // 新增详情示例接口
-export const addDemo = (params: DemoItemParams) => httpPost<BaseResult>(DemoApi.addDemo, params)
+export const addDemo = <T>(params: object) => httpPost<T>(DemoApi.addDemo, params)
 
 // 修改详情示例接口
-export const updateDemo = (params: DemoItemParams) =>
-  httpPost<BaseResult>(DemoApi.updateDemo, params)
+export const updateDemo = <T>(params: object) => httpPost<T>(DemoApi.updateDemo, params)
 
 // 获取详情示例接口
-export const deleteDemo = (params: IdListParams) => httpPost<BaseResult>(DemoApi.delDemo, params)
+export const deleteDemo = <T>(params: object) => httpPost<T>(DemoApi.delDemo, params)

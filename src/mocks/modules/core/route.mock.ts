@@ -9,6 +9,7 @@ export default [
       STATUS: '1',
       MSG: 'success',
       LIST: [
+        // ----- 首页
         {
           path: '/index',
           name: 'Index',
@@ -23,6 +24,7 @@ export default [
           visible: '1',
           cache: '1'
         },
+        // ----- 演示示例
         {
           path: '/demo',
           name: 'Demo',
@@ -123,6 +125,7 @@ export default [
           visible: '1',
           cache: '1'
         },
+        // ----- 活动模版
         {
           path: '/tpl',
           name: 'Tpl',
@@ -137,6 +140,7 @@ export default [
           visible: '1',
           cache: '1'
         },
+        // ----- 系统管理
         {
           path: '/system',
           name: 'System',
@@ -189,8 +193,8 @@ export default [
           menuType: 'default',
           menuIcon: '',
           menuTitle: '菜单管理',
-          visible: '1',
           menuAffix: '0',
+          visible: '1',
           cache: '1'
         },
         {
@@ -198,13 +202,13 @@ export default [
           name: 'SystemParameter',
           component: 'system/parameter',
           sortNum: 30,
-          parentId: 'M2021092414175720920000000005',
+          parentId: 'M20210924141757209200000000051',
           menuId: 'M2021092414175720920000000005100004',
           menuType: 'default',
           menuIcon: '',
-          menuTitle: '菜单管理',
-          visible: '1',
+          menuTitle: '参数管理',
           menuAffix: '0',
+          visible: '1',
           cache: '1'
         }
       ]
