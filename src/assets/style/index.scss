@@ -1,0 +1,11 @@
+@use './nprogress.scss';
+@use './transition.scss';
+@use './variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: var(--el-bg-color-page);
+}

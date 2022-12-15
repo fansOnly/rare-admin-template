@@ -1,0 +1,45 @@
+$--colors: (
+  'primary': (
+    'base': #3dccdf
+  ),
+  'success': (
+    'base': #4cd964
+  ),
+  'warning': (
+    'base': #f0ad4e
+  ),
+  'danger': (
+    'base': #ed3c2f
+  ),
+  'error': (
+    'base': #ed3c2f
+  ),
+  'info': (
+    'base': #ff7400
+  )
+) !default;
+
+// set custom namespace
+// @forward 'element-plus/theme-chalk/src/mixins/config.scss' with (
+//   $namespace: 'vs'
+// );
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+  $colors: $--colors,
+  $menu: (
+    'active-color': #adffb0,
+    'text-color': #fff,
+    'bg-color': #3c3755,
+    'hover-bg-color': #746aa7
+  )
+);
+
+// custom dark variables
+// 先引入自定义的样式，不然会报错
+@use './dark.scss';
+
+// import dark theme
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss' as *;
+
+// You can comment it to hide debug info.
+// @debug $--colors;

@@ -1,0 +1,10 @@
+$--colors: (
+  'primary': (
+    'base': #589ef8
+  )
+);
+
+// This module was already loaded, so it can't be configured using "with".
+@forward 'element-plus/theme-chalk/src/dark/var.scss' with (
+  $colors: $--colors
+);

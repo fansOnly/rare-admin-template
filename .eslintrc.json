@@ -1,0 +1,164 @@
+{
+  "root": true,
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended",
+    "prettier"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".d.ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.json"],
+      "parser": "jsonc-eslint-parser"
+    },
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": ["*.vue"],
+      "parser": "vue-eslint-parser",
+      "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "extraFileExtensions": [".vue"],
+        "ecmaVersion": "latest",
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
+  //it is base on https://github.com/vuejs/eslint-config-vue
+  "rules": {
+    // for js/ts
+    "no-console": ["off", { "allow": ["error"] }],
+    "no-debugger": "warn",
+    "no-var": "error",
+    "no-unused-vars": "off",
+    "prefer-const": ["warn", { "destructuring": "all", "ignoreReadBeforeAssign": true }],
+    "prefer-arrow-callback": ["error", { "allowNamedFunctions": false, "allowUnboundThis": true }],
+    "object-shorthand": ["error", "always", { "ignoreConstructors": false, "avoidQuotes": true }],
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    // 禁止末尾逗号 --fix
+    "comma-dangle": ["off", "never"],
+    // 强制在逗号前后使用一致的空格 --fix
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    // 逗号风格: 要求逗号放在数组元素、对象属性或变量声明之后，且在同一行 --fix
+    "comma-style": "error",
+    "no-return-await": "error",
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "no-async-promise-executor": "off",
+    // 两个空格 --fix
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": ["ConditionalExpression"],
+        "offsetTernaryExpressions": false,
+        "flatTernaryExpressions": false
+      }
+    ],
+    // 强制所有不包含双引号的 JSX 属性值使用双引号 --fix
+    "jsx-quotes": ["error", "prefer-double"],
+    /**
+     * 强制在对象字面量的键和值之间使用一致的空格 --fix
+     * 1. 禁止在对象字面量的键和冒号之间存在空格
+     * 2. 要求在对象字面量的冒号和值之间存在至少有一个空格
+     */ "key-spacing": "error",
+    /**
+     * 强制关键字周围空格的一致性 --fix
+     * 1. 要求在关键字之前至少有一个空格
+     * 2. 要求在关键字之后至少有一个空格
+     */
+    "keyword-spacing": ["error", { "before": true, "after": true }],
+    // 限制函数定义中最大参数个数 - 3
+    "max-params": ["error", { "max": 5 }],
+    "no-unreachable": "warn",
+    // 禁止出现多个空格 --fix
+    "no-multi-spaces": "error",
+    // 多个空行 --fix
+    "no-multiple-empty-lines": ["error", { "max": 2 }],
+    // 禁止在 return 语句中使用赋值语句
+    "no-return-assign": "error",
+    "no-sequences": "error", // 禁用逗号操作符
+    // 禁止在函数标识符和其调用之间有空格 --fix
+    "func-call-spacing": "warn",
+    // 不允许初始化变量值为 undefined --fix
+    "no-undef-init": "error",
+    // 禁止可以表达为更简单结构的三元操作符 --fix
+    "no-unneeded-ternary": "error",
+    // 禁止在对象中使用不必要的计算属性 --fix
+    "no-useless-computed-key": "error",
+    // 禁止属性前有空白 --fix
+    "no-whitespace-before-property": "error",
+    // 强制函数中的变量在一起声明或分开声明 // --fix
+    "one-var": ["error", { "initialized": "never" }],
+    "operator-linebreak": ["error", "after", { "overrides": { "?": "before", ":": "before" } }], // --fix
+    // 单引号 --fix
+    "quotes": ["error", "single"],
+    // 禁止使用分号代替 ASI --fix
+    "semi": ["error", "never"],
+    // 强制分号前后有空格 --fix
+    "semi-spacing": ["error", { "before": false, "after": true }],
+    // 要求语句块之前的空格 --fix
+    "space-before-blocks": ["error", "always"],
+    // 要求或禁止函数圆括号之前有一个空格 --fix
+    "space-before-function-paren": [
+      "error",
+      { "anonymous": "always", "named": "never", "asyncArrow": "always" }
+    ],
+    // 禁止圆括号内的空格 --fix
+    "space-in-parens": "error",
+    // 要求中缀操作符周围有空格 --fix
+    "space-infix-ops": "error",
+    // 要求在一元操作符之前或之后存在空格 --fix
+    "space-unary-ops": ["error", { "words": true, "nonwords": false }],
+
+    // for import
+    "import/no-unresolved": "off",
+    "import/named": "off",
+
+    // for ts
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-comment": ["off", { "ts-ignore": false }],
+    "@typescript-eslint/no-non-null-assertion": "off",
+
+    // for vue
+    "vue/no-v-html": "off",
+    "vue/no-unused-vars": ["warn", { "ignorePattern": "^_" }],
+    "vue/first-attribute-linebreak": "off",
+    // Require component names to be always multi-word
+    // prefer name: 'todo-item', not name: 'Todo'
+    "vue/multi-word-component-names": [
+      "warn",
+      {
+        "ignores": ["index", "detail"]
+      }
+    ]
+  },
+  "ignorePatterns": ["src/**/*.test.*"]
+}
