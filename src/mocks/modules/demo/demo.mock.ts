@@ -1,6 +1,5 @@
 import { MockMethod } from 'vite-plugin-mock'
 import Mock from 'mockjs'
-import type { ResponseData } from '@/typings/axios'
 
 let TOTAL_DEF = 276
 
@@ -28,7 +27,7 @@ export default [
     url: '/api-proxy/demo/qryDemoList',
     method: 'post',
     timeout: 500,
-    response: (config: any): ResponseData => {
+    response: <T extends { body: Recordable }>(config: T) => {
       const { page, pageSize } = config.body
       const LIST = mockTableData(page, pageSize, TOTAL_DEF)
       return {
@@ -54,13 +53,13 @@ export default [
       type: 'hot',
       author: '@cname',
       createTime: '@datetime'
-    } as ResponseData
+    }
   },
   {
     url: '/api-proxy/demo/addDemo',
     method: 'post',
     timeout: 500,
-    response: (): ResponseData => {
+    response: () => {
       ++TOTAL_DEF
       return {
         STATUS: '1',
@@ -72,7 +71,7 @@ export default [
     url: '/api-proxy/demo/updateDemo',
     method: 'post',
     timeout: 500,
-    response: (): ResponseData => {
+    response: () => {
       return {
         STATUS: '1',
         MSG: 'success'
@@ -83,7 +82,7 @@ export default [
     url: '/api-proxy/demo/delDemo',
     method: 'post',
     timeout: 100,
-    response: (config: any): ResponseData => {
+    response: <T extends { body: Recordable }>(config: T) => {
       const { ids } = config.body
       TOTAL_DEF -= ids.length
       return {

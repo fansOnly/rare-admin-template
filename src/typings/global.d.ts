@@ -1,3 +1,4 @@
+export {}
 declare global {
   declare type PropType<T> = VuePropType<T>
   declare type Recordable<T = any> = Record<string, T>
@@ -12,5 +13,3 @@ declare global {
   declare type Awaitable<T> = Promise<T> | T
   declare type FlagType = 'Y' | 'N'
 }
-
-export {}

@@ -1,5 +1,4 @@
 import { MockMethod } from 'vite-plugin-mock'
-import type { ResponseData } from '@/typings/axios'
 
 export default [
   {
@@ -212,6 +211,6 @@ export default [
           cache: '1'
         }
       ]
-    } as ResponseData
+    }
   }
 ] as MockMethod[]

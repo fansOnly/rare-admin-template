@@ -138,3 +138,7 @@ export const httpGet = <T>(
 ): Promise<T> => {
   return service.request({ url, method: RequestMethods.GET, data, headers: customHeaders })
 }
+
+export const httpUpload = <T>(data?: unknown, customHeaders?: AxiosRequestHeaders): Promise<T> => {
+  return service.request({ url: '', method: RequestMethods.POST, data, headers: customHeaders })
+}

@@ -1,4 +1,4 @@
-export const defaultNamespace = 'el'
+export const defaultNamespace = 'ns'
 const statePrefix = 'is-'
 
 const _bem = (namespace: string, block: string, element: string, modifier: string) => {

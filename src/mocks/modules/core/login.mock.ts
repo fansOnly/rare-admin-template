@@ -1,13 +1,12 @@
 import { MockMethod } from 'vite-plugin-mock'
 import { jwtCreateToken } from '@/common/security/jwt'
 import { md5Encrypt } from '@/common/security/md5'
-import type { ResponseData } from '@/typings/axios'
 
 export default [
   {
     url: '/api-proxy/core/login',
     method: 'post',
-    response: (config: any): ResponseData => {
+    response: <T extends { body: Recordable }>(config: T) => {
       const { username, password } = config.body
       if (username == 'admin' && password === md5Encrypt('123456')) {
         const token = jwtCreateToken({ username: 'admin' })
@@ -30,6 +29,6 @@ export default [
     response: {
       STATUS: '1',
       MSG: 'success'
-    } as ResponseData
+    }
   }
 ] as MockMethod[]

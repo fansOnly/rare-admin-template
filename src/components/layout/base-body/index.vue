@@ -38,6 +38,8 @@ defineProps<{
 }
 
 .el-main {
+  display: flex;
+  flex-direction: column;
   min-height: calc(100% - 40px);
   overflow: hidden;
 }

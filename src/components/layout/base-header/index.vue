@@ -1,50 +1,49 @@
 <template>
   <el-header class="layout-header">
-    <div class="header-bar__menu-icon" @click="toggleSidebar">
+    <div class="header-collapse-icon" @click="toggleSidebar">
       <el-icon>
         <i-ep-expand v-if="appStore.isCollapse" />
         <i-ep-fold v-else />
       </el-icon>
     </div>
-    <div class="header-bar__options">
-      <div class="et-icon__header">
+    <div class="header-nav-menu">
+      <div class="nav-menu-item">
         <el-icon>
           <i-ep-search />
         </el-icon>
       </div>
-      <div class="et-icon__header" @click="toggleFullscreen">
+      <div class="nav-menu-item" @click="toggleFullscreen">
         <el-icon>
           <i-ep-full-screen />
         </el-icon>
       </div>
-      <div class="et-icon__header">
+      <div class="nav-menu-item">
         <el-badge :value="unreadCount" :max="99">
-          <el-icon style="transform: translateY(4px)">
+          <el-icon>
             <i-ep-bell />
           </el-icon>
         </el-badge>
       </div>
-      <div class="mode-switch">
+      <div class="nav-menu-item__mode">
         <el-switch
           v-model="isDark"
           inline-prompt
           :active-icon="Moon"
           :inactive-icon="Sunny"
           style="
-            --et-switch-on-color: #3a3a3a;
-            --et-switch-off-color: #f5f2f2;
-            --et-switch-border-color: #d7d7d7;
+            --et-switch-on-color: #3a3a3a,
+            --et-switch-off-color: #f5f2f2,
+            --et-switch-border-color: #d7d7d7,
           "
           :class="[isDark ? 'mode-switch-off' : 'mode-switch-on']"
         />
       </div>
-      <el-dropdown trigger="click">
+      <el-dropdown trigger="hover">
         <div class="header-bar-user">
           <el-avatar :size="30" :src="userInfo.avatar">
             <el-image :src="user" fit="contain" alt="user" />
           </el-avatar>
           <div class="header-bar-user__name">{{ userInfo.userName }}</div>
-          <el-icon><i-ep-caret-bottom /></el-icon>
         </div>
 
         <template #dropdown>
@@ -102,7 +101,7 @@ const handleLogout = async () => {
   })
   if (confirm) {
     appStore.setGlobalLoading(true)
-    const data = await logout()
+    const data: any = await logout()
     if (data.STATUS == '1') {
       userStore.logout()
       await router.push('/login')
@@ -121,31 +120,36 @@ const handleLogout = async () => {
   background: var(--el-bg-color);
 }
 
-.header-bar__menu-icon {
+.header-collapse-icon {
   font-size: 24px;
   cursor: pointer;
 }
 
-.header-bar__options {
+.header-nav-menu {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-.et-icon__header {
+.nav-menu-item {
   display: flex;
   align-items: center;
   height: 100%;
   padding: 0 8px;
-  font-size: 24px;
   cursor: pointer;
 
-  & .et-badge {
-    transform: translateY(4px);
+  .el-icon {
+    box-sizing: border-box;
+    display: block;
+    font-size: 18px;
   }
 
   &:hover {
-    background: #f9f9f9;
+    background: var(--el-bg-color-page);
+
+    .el-icon {
+      animation: twinkle 0.3s ease-in-out;
+    }
   }
 }
 
@@ -159,7 +163,7 @@ const handleLogout = async () => {
   padding-left: 12px;
 }
 
-.mode-switch {
+.nav-menu-item__mode {
   padding: 0 12px;
 }
 
@@ -182,6 +186,20 @@ const handleLogout = async () => {
 
   & .el-switch__action {
     background-color: #3a3a3a;
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    transform: scale(0);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
   }
 }
 </style>
