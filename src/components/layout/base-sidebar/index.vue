@@ -1,17 +1,17 @@
 <template>
-  <div class="et-layout-sidebar" :style="{ height: height + 'px' }">
-    <div class="et-layout-sidebar__logo">
+  <div class="ns-layout-sidebar" :style="{ height: height + 'px' }">
+    <div class="ns-layout-sidebar__logo">
       <el-image
         :src="logo2"
         fit="contain"
         alt="logo"
         :class="{ 'is-height': !appStore.isCollapse }"
       />
-      <div v-show="!appStore.isCollapse" class="et-layout-sidebar__title">
+      <div v-show="!appStore.isCollapse" class="ns-layout-sidebar__title">
         {{ appStore.appName }}
       </div>
     </div>
-    <el-scrollbar class="et-layout-menu" noresize>
+    <el-scrollbar class="ns-layout-menu" noresize>
       <el-menu
         :default-active="route.meta.id"
         :collapse="appStore.isCollapse"
@@ -108,30 +108,30 @@ const handleClickMenu = (menu: Recordable) => {
 </script>
 
 <style lang="scss" scoped>
-.et-layout-sidebar {
-  background: var(--et-menu-bg-color);
+.ns-layout-sidebar {
+  background: var(--ns-menu-bg-color);
   overflow: hidden;
 }
 
-.et-layout-menu {
-  height: calc(100% - var(--et-header-height));
+.ns-layout-menu {
+  height: calc(100% - var(--ns-header-height));
 }
 
 .el-menu {
   border-right: 0;
 }
 
-.et-layout-sidebar__logo {
+.ns-layout-sidebar__logo {
   display: flex;
   align-items: center;
-  height: var(--et-header-height);
+  height: var(--ns-header-height);
 }
 
 .is-height {
   height: 100%;
 }
 
-.et-layout-sidebar__title {
+.ns-layout-sidebar__title {
   color: #fff;
   white-space: nowrap;
 }

@@ -1,6 +1,6 @@
 <template>
-  <div v-loading="loading" class="et-iframe__wrapper">
-    <iframe ref="frameRef" :src="src" class="et-iframe" @load="hideLoading"></iframe>
+  <div v-loading="loading" class="ns-iframe__wrapper">
+    <iframe ref="frameRef" :src="src" class="ns-iframe" @load="hideLoading"></iframe>
   </div>
 </template>
 
@@ -29,10 +29,10 @@ onDeactivated(() => {
 </script>
 
 <style lang="scss" scoped>
-.et-iframe {
+.ns-iframe {
   display: block;
   width: 100%;
-  height: calc(100vh - var(--et-header-height) - var(--et-multi-tabs-height) - 80px);
+  height: calc(100vh - var(--ns-header-height) - var(--ns-multi-tabs-height) - 80px);
   border: 0;
 }
 </style>

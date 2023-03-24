@@ -1,5 +1,5 @@
 <template>
-  <el-container class="et-ns-container">
+  <el-container class="ns-layout-container">
     <el-aside :width="appStore.asideWidth">
       <base-sidebar :height="height" />
     </el-aside>
@@ -32,10 +32,10 @@ const handleReload = () => {
 </script>
 
 <style lang="scss" scoped>
-.et-ns-container {
-  --et-header-height: 60px;
-  --et-multi-tabs-height: 50px;
-  // --et-breadcrumb-height: 40px;
-  --et-menu-bg-color: #3c3755;
+.ns-layout-container {
+  --ns-header-height: 60px;
+  --ns-multi-tabs-height: 50px;
+  // --ns-breadcrumb-height: 40px;
+  --ns-menu-bg-color: #3c3755;
 }
 </style>

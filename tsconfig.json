@@ -23,6 +23,9 @@
       "@/*": ["src/*"]
     }
   },
+  "vueCompilerOptions": {
+    "plugins": ["@vue-macros/volar/define-options"]
+  },
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",

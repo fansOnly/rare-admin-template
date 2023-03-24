@@ -31,10 +31,10 @@
           :active-icon="Moon"
           :inactive-icon="Sunny"
           style="
-            --et-switch-on-color: #3a3a3a,
-            --et-switch-off-color: #f5f2f2,
-            --et-switch-border-color: #d7d7d7,
-          "
+              --ns-switch-on-color: #3a3a3a,
+              --ns-switch-off-color: #f5f2f2,
+              --ns-switch-border-color: #d7d7d7,
+            "
           :class="[isDark ? 'mode-switch-off' : 'mode-switch-on']"
         />
       </div>
@@ -169,7 +169,7 @@ const handleLogout = async () => {
 
 :deep(.mode-switch-on) {
   & .is-icon.is-show {
-    color: var(--et-color-primary);
+    color: var(--ns-color-primary);
     z-index: 2;
   }
 
@@ -180,7 +180,7 @@ const handleLogout = async () => {
 
 :deep(.mode-switch-off) {
   & .is-icon.is-show {
-    color: var(--et-color-white);
+    color: var(--ns-color-white);
     z-index: 2;
   }
 

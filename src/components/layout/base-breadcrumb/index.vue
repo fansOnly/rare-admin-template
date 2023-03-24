@@ -5,7 +5,7 @@
         {{ item.meta.title }}
       </el-breadcrumb-item>
     </el-breadcrumb>
-    <div class="et-breadcrumb__right"></div>
+    <div class="ns-breadcrumb__right"></div>
   </div>
 </template>
 
@@ -28,8 +28,8 @@ matched = computed(() => route.matched)
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: var(--et-breadcrumb-height);
-  padding: 0 var(--et-main-padding);
+  height: var(--ns-breadcrumb-height);
+  padding: 0 var(--ns-main-padding);
   background: var(--el-bg-color);
   border-top: 1px solid var(--el-border-color-extra-light);
 }

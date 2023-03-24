@@ -1,13 +1,13 @@
 import { mount } from '@vue/test-utils'
 import { describe, expect, it, test } from 'vitest'
 
-import Button from '../components/ui/et-button/index.vue'
+import Button from '../components/fsy-ui/button/index.vue'
 
 describe('Button.vue', () => {
   it('create', () => {
     const wrapper = mount(() => <Button type="primary" />)
 
-    expect(wrapper.classes()).toContain('et-button--primary')
+    expect(wrapper.classes()).toContain('ns-button--primary')
   })
 
   // expect(wrapper.findComponent(Search).exists()).toBeTruthy()

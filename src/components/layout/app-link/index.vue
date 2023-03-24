@@ -1,12 +1,12 @@
 <template>
-  <a v-if="isExternalLink" v-bind="$attrs" :href="to" target="_blank" class="et-menu-link">
+  <a v-if="isExternalLink" v-bind="$attrs" :href="to" target="_blank" class="ns-menu-link">
     <slot />
   </a>
   <router-link v-else v-slot="{ isActive, href, navigate }" v-bind="$props" custom>
     <a
       v-bind="$attrs"
       :href="href"
-      :class="['et-menu-link', isActive ? activeClass : inactiveClass]"
+      :class="['ns-menu-link', isActive ? activeClass : inactiveClass]"
       @click="navigate"
     >
       <slot />
@@ -37,7 +37,7 @@ const navigate = (to: string) => router.push(to)
 </script>
 
 <style lang="scss" scoped>
-.et-menu-link {
+.ns-menu-link {
   color: inherit;
   text-decoration: none;
 }

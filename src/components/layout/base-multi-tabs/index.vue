@@ -1,9 +1,9 @@
 <template>
-  <div class="et-multi-tabs__wrapper">
+  <div class="ns-multi-tabs__wrapper">
     <el-tabs
       :model-value="currentName"
       type="card"
-      class="et-multi-tabs"
+      class="ns-multi-tabs"
       @tab-click="onClickTab"
       @tab-remove="onCloseTab"
     >
@@ -14,11 +14,11 @@
         :closable="showCloseIcon(item)"
       >
         <template #label>
-          <span class="et-multi-tabs__label">
-            <span class="et-multi-tabs__text">{{ item.meta.title }}</span>
+          <span class="ns-multi-tabs__label">
+            <span class="ns-multi-tabs__text">{{ item.meta.title }}</span>
             <el-icon
               v-if="ifActiveRoute(item)"
-              class="et-multi-tabs__refresh"
+              class="ns-multi-tabs__refresh"
               @click.stop="onRefreshTab"
             >
               <Refresh />
@@ -27,7 +27,7 @@
         </template>
       </el-tab-pane>
     </el-tabs>
-    <div class="et-multi-tabs__more">
+    <div class="ns-multi-tabs__more">
       <el-dropdown trigger="click" size="small" @command="onCommand">
         <el-icon>
           <MoreFilled />
@@ -91,18 +91,18 @@ const onCommand = (command: string) => {
 </script>
 
 <style lang="scss" scoped>
-.et-multi-tabs__wrapper {
+.ns-multi-tabs__wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding: 10px var(--et-main-padding);
+  padding: 10px var(--ns-main-padding);
   background: var(--el-bg-color);
   border-top: 1px solid var(--el-border-color-light);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
   z-index: 2;
 
-  .et-multi-tabs {
+  .ns-multi-tabs {
     --el-tabs-header-height: 30px;
     flex: 1;
     width: 100%;
@@ -191,18 +191,18 @@ const onCommand = (command: string) => {
   }
 }
 
-.et-multi-tabs__label {
+.ns-multi-tabs__label {
   display: flex;
   align-items: center;
 }
 
-.et-multi-tabs__text {
+.ns-multi-tabs__text {
   font-size: 12px;
   font-weight: 400;
   white-space: nowrap;
 }
 
-.et-multi-tabs__refresh {
+.ns-multi-tabs__refresh {
   margin-left: 5px;
   font-size: 14px;
   transform-origin: 50% 50%;
@@ -213,7 +213,7 @@ const onCommand = (command: string) => {
   }
 }
 
-.et-multi-tabs__more {
+.ns-multi-tabs__more {
   width: 16px;
   margin-left: 12px;
   font-size: 16px;

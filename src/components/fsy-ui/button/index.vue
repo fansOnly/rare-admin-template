@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['et-button', `et-button--${type}`, round ? `et-button--${round}` : null]"
+    :class="['ns-button', `ns-button--${type}`, round ? `ns-button--${round}` : null]"
     @click="emit('click')"
   >
     <slot name="default">{{ buttonText }}</slot>
@@ -8,7 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import { NOOP } from '@/utils'
+// import { NOOP } from '@/utils'
+
+defineOptions({
+  name: 'FsyButton'
+})
 
 interface Props {
   type: string
@@ -28,7 +32,7 @@ defineExpose(props)
 </script>
 
 <style lang="scss" scoped>
-.et-button {
+.ns-button {
   width: 200px;
   height: 50px;
 }

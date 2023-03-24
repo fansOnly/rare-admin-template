@@ -36,8 +36,11 @@ export const useUnpluginVite = () => {
       include: [/\.vue$/, /\.vue\?vue/],
       resolvers: [
         name => {
-          if (name.startsWith('Ex')) {
-            return path.resolve(srcPath, `components/ui/${name.slice(2).toLowerCase()}/index.vue`)
+          if (name.toLowerCase().startsWith('fsy')) {
+            return path.resolve(
+              srcPath,
+              `components/fsy-ui/${name.slice(3).toLowerCase()}/index.vue`
+            )
           }
         },
         ElementPlusResolver({

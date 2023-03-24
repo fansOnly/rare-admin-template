@@ -24,7 +24,7 @@
       </template>
     </table-page>
     <!-- 抽屉 -->
-    <et-drawer
+    <fsy-drawer
       v-model="visible"
       title="这是一个异步确认抽屉示例"
       size="50%"
@@ -95,7 +95,7 @@
           </el-col>
         </el-row>
       </el-form>
-    </et-drawer>
+    </fsy-drawer>
   </div>
 </template>
 
@@ -105,7 +105,7 @@ import { mappingText } from '@/utils'
 import { useMessage } from '@/hooks/use-message'
 
 import type { FormInstance } from 'element-plus'
-import TablePage from '@/components/common//table-page/index.vue'
+import { ValidateFieldsError } from 'async-validator'
 
 interface TableItem {
   id: string
@@ -125,7 +125,7 @@ const STATUS_LIST = [
   { label: '置顶', value: '2' }
 ]
 
-const tablePageRef = ref<InstanceType<typeof TablePage>>()
+const tablePageRef = ref<InstanceType<any>>()
 const visible = ref(false)
 
 const searchConfig = {
@@ -244,15 +244,15 @@ const handleMultiDel = async (rows: any) => {
 const reload = () => tablePageRef.value!.loadData()
 
 const handleBeforeClose = async (done: (shouldCancel?: boolean) => void) => {
-  await modelRef.value!.validate(async (valid, fields) => {
+  await modelRef.value!.validate(async (valid: boolean, fields?: ValidateFieldsError) => {
     if (valid) {
-      let res
+      let res: any
       if (flag === 'add') {
         res = await addDemo({ ...editModel })
       } else if (flag === 'edit') {
         res = await updateDemo({ ...editModel })
       }
-      if (res?.STATUS == '1') {
+      if (res.STATUS == '1') {
         useToast({ message: '交易成功' })
         flag = ''
         reload()

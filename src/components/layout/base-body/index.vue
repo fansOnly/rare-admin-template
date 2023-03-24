@@ -1,5 +1,5 @@
 <template>
-  <div class="et-layout__main">
+  <div class="ns-layout-main">
     <el-main v-loading="!loaded">
       <router-view v-slot="{ Component, route }">
         <transition name="fade-slide" mode="out-in" appear>
@@ -31,9 +31,9 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-.et-layout__main {
+.ns-layout-main {
   box-sizing: border-box;
-  height: calc(100vh - var(--et-header-height) - var(--et-multi-tabs-height));
+  height: calc(100vh - var(--ns-header-height) - var(--ns-multi-tabs-height));
   overflow-x: hidden;
 }
 

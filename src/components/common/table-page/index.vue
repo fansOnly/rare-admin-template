@@ -1,6 +1,6 @@
 <template>
-  <div class="table-page__wrapper">
-    <el-form ref="formRef" :model="model" class="et-form--search">
+  <div class="table-page-wrapper">
+    <el-form ref="formRef" :model="model" class="ns-form--search">
       <el-row :gutter="20">
         <el-col :span="20">
           <el-row :gutter="searchConfig.layout.gutter">
@@ -224,15 +224,15 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-.et-form--search {
-  padding: var(--et-main-padding) var(--et-main-padding) 0;
+.ns-form--search {
+  padding: var(--ns-main-padding) var(--ns-main-padding) 0;
   background: var(--el-bg-color);
   border-radius: 6px;
 }
 
 .table-page__body {
-  margin-top: var(--et-main-margin, 20px);
-  padding: var(--et-main-padding);
+  margin-top: var(--ns-main-margin, 20px);
+  padding: var(--ns-main-padding);
   background: var(--el-bg-color);
   border-radius: 6px;
 }
@@ -243,7 +243,7 @@ defineExpose({
 }
 
 .table-page__option-bar {
-  padding-bottom: var(--et-main-padding);
+  padding-bottom: var(--ns-main-padding);
   font-size: 14px;
   color: #666;
   text-align: left;

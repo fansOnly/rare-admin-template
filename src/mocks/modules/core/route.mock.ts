@@ -139,6 +139,49 @@ export default [
           visible: '1',
           cache: '1'
         },
+        // ----- 低代码表单
+        {
+          path: '/form',
+          name: 'Form',
+          component: '',
+          sortNum: 30,
+          parentId: '',
+          menuId: 'M202109241417572092000000000529',
+          menuType: 'default',
+          menuIcon: 'document',
+          menuTitle: '低代码表单',
+          menuAffix: '0',
+          visible: '1',
+          cache: '1'
+        },
+        {
+          path: '/form/designer',
+          name: 'FormDesigner',
+          component: 'form/designer',
+          sortNum: 10,
+          parentId: 'M202109241417572092000000000529',
+          menuId: 'M20210924141757209200000000052900001',
+          menuType: 'default',
+          menuIcon: '',
+          menuTitle: '表单设计器',
+          menuAffix: '0',
+          visible: '1',
+          cache: '1'
+        },
+        {
+          path: '/form/questionnaire',
+          name: 'FormQuestionnaire',
+          component: 'form/questionnaire',
+          sortNum: 20,
+          parentId: 'M202109241417572092000000000529',
+          menuId: 'M20210924141757209200000000052900002',
+          menuType: 'default',
+          menuIcon: '',
+          menuTitle: '问卷调查',
+          menuAffix: '0',
+          visible: '1',
+          cache: '1'
+        },
         // ----- 系统管理
         {
           path: '/system',
