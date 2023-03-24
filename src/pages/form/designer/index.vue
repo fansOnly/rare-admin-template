@@ -1,18 +1,16 @@
 <template>
   <div ref="fdRef" class="ns-form-designer-wrapper">
-    <form-designer-module :height="mainHeight" />
-    <form-designer-container :height="mainHeight" />
-    <form-designer-property :height="mainHeight" />
+    <rform-widget-area :height="mainHeight" />
+    <rform-main-area :height="mainHeight" />
+    <rform-property-area :height="mainHeight" />
   </div>
 </template>
 
 <script setup lang="ts">
-import FormDesignerModule from '../components/form-designer-module.vue'
-import FormDesignerContainer from '../components/form-designer-container.vue'
-import FormDesignerProperty from '../components/form-designer-property.vue'
+import RformWidgetArea from '../components/layouts/rform-widget-area.vue'
+import RformMainArea from '../components/layouts/rform-main-area.vue'
+import RformPropertyArea from '../components/layouts/rform-property-area.vue'
 import { useResizeObserver } from '@vueuse/core'
-import type { ModuleItem } from '../utils/token'
-import { formDesignKey } from '../utils/token'
 
 const fdRef = ref<HTMLElement | null>(null)
 const mainHeight = ref(0)
@@ -26,33 +24,6 @@ onMounted(() => {
       mainHeight.value = height
     })
   }
-})
-
-// 共享的数据
-const moduleData = ref<ModuleItem[]>([])
-const activeModuleIdx = ref(-1)
-const activeModuleName = ref('')
-const setActiveModuleIdx = (index: number) => {
-  console.log('激活组件 index::', index)
-  activeModuleIdx.value = index
-}
-const setActiveModuleName = (name: string) => {
-  console.log('激活组件 name::', name)
-  activeModuleName.value = name
-}
-const updateModuleData = (data: ModuleItem) => {
-  console.log('更新数据::', data)
-  moduleData.value[activeModuleIdx.value] = data
-  console.log('moduleData: ', moduleData.value)
-}
-
-provide(formDesignKey, {
-  moduleData,
-  activeModuleIdx,
-  activeModuleName,
-  setActiveModuleIdx,
-  setActiveModuleName,
-  updateModuleData
 })
 </script>
 

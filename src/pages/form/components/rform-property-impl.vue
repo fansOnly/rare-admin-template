@@ -4,11 +4,14 @@
       <el-collapse-item v-if="slots.basic" title="基本属性" name="basic">
         <slot name="basic" />
       </el-collapse-item>
+      <el-collapse-item v-if="slots.dispose" title="选项配置" name="dispose">
+        <slot name="dispose" />
+      </el-collapse-item>
       <el-collapse-item v-if="slots.advance" title="高级属性" name="advance">
         <slot name="advance" />
       </el-collapse-item>
-      <el-collapse-item v-if="slots.event" title="事件属性" name="event">
-        <slot name="event" />
+      <el-collapse-item v-if="slots.callback" title="事件属性" name="callback">
+        <slot name="callback" />
       </el-collapse-item>
     </el-collapse>
   </div>
@@ -16,12 +19,12 @@
 
 <script setup lang="ts">
 defineOptions({
-  name: 'FormPropertyImpl'
+  name: 'RformPropertyImpl'
 })
 
 const slots = useSlots()
 
-const activeNames = ref(['basic', 'advance', 'event'])
+const activeNames = ref(['basic', 'advance', 'dispose', 'callback'])
 </script>
 
 <style lang="scss" scoped>

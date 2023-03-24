@@ -13,7 +13,7 @@
           </el-icon>
         </el-button>
         <div class="ns-fdc-bar__client">
-          <el-radio-group v-model="layoutType" size="default">
+          <el-radio-group v-model="formConfig.layoutType" size="default">
             <el-radio-button label="PC" />
             <el-radio-button label="PAD" />
             <el-radio-button label="H5" />
@@ -35,27 +35,40 @@
         </el-button>
         <el-button type="primary" text>导入JSON</el-button>
         <el-button type="primary" text>导出JSON</el-button>
+        <el-button type="primary" text>导出代码</el-button>
       </div>
     </div>
-    <el-form>
+    <el-form
+      :size="formConfig.size"
+      :label-position="formConfig.labelPosition"
+      :label-width="formConfig.labelWidth"
+      :class="['rform', `is-${formConfig.labelAlign}`]"
+    >
       <el-scrollbar :height="height - 40">
         <div class="ns-fdc-main">
-          <div :class="['is-' + layoutType.toLowerCase()]">
+          <div :class="['is-' + formConfig.layoutType.toLowerCase()]">
             <draggable
-              :list="usedModules"
-              group="modules"
+              :list="usedWidgetList"
+              group="widgets"
+              handle=".rform-widget-name"
               item-key="id"
               :component-data="{
                 class: 'ns-fdc-content',
-                style: { 'min-height': height - (layoutType === 'PC' ? 56 : 72) + 'px' }
+                style: { 'min-height': height - (formConfig.layoutType === 'PC' ? 56 : 72) + 'px' }
               }"
               @change="onDragChange"
             >
               <template #item="{ element, index }">
-                <form-module-impl :module-name="element.name" :index="index" />
+                <rform-widget-impl
+                  :name="element.name"
+                  :title="element.title"
+                  :index="index"
+                  @swap="onSwap"
+                  @remove="onRemove"
+                />
               </template>
             </draggable>
-            <div v-if="!usedModules.length" class="ns-fdc-empty">
+            <div v-if="!usedWidgetList.length" class="ns-fdc-empty">
               请从左侧列表中选择一个组件, 然后用鼠标拖动组件放置于此处
             </div>
           </div>
@@ -66,65 +79,89 @@
 </template>
 
 <script setup lang="ts">
-import formModuleImpl from './form-module-impl.vue'
+import RformWidgetImpl from '../rform-widget-impl.vue'
 import draggable from 'vuedraggable'
-import { formDesignKey } from '../utils/token'
-import allProperties from './properties'
+import propertyList from '../widget-property'
 import { useId } from '@/hooks'
-import type { ModuleFormType } from '../utils/types'
+import type { WidgetType, WidgetItemType } from '../utils/types'
+import { useRform } from '../utils/use-rform'
+const { formConfig, setActiveWidgetIdx, addWidget, swapWidget } = useRform()
 
 defineOptions({
-  name: 'FormDesignerContainer'
+  name: 'RformMainArea'
 })
 
 defineProps<{
   height: number
 }>()
 
-const formDesigner = inject(formDesignKey)
-
-const usedModules = ref([])
-const layoutType = ref('PC')
-
-const uid = useId().value
-const uuid = ref(uid)
+const usedWidgetList = ref<WidgetType[]>([])
+let uid = useId().value
 
 const onDragChange = (evt: any) => {
   // console.log('onDragChange evt: ', evt)
   if (evt.added) {
     const { element, newIndex } = evt.added
-    console.log('added: ', element.name, newIndex)
-    formDesigner?.setActiveModuleIdx(newIndex)
-    formDesigner?.setActiveModuleName(element.name)
-    // 获取配置项
-    const propertyData = computed(() => allProperties.find(v => v.key === element.name))
-    // 初始化配置项表单值
-    if (!propertyData) {
-      return console.warn(`It seems ${element.name} config data is missing.`)
-    }
-    const moduleForm = reactive<ModuleFormType>({
-      id: increaseId()
-    })
-    moduleForm.id = uuid.value
-    propertyData.value!.basic.forEach(item => {
-      moduleForm[item.name] = item.value
-    })
-    propertyData.value!.advance.forEach(item => {
-      moduleForm[item.name] = item.value
-    })
-    formDesigner?.updateModuleData(moduleForm)
+    console.log('[added]: ', element, '[at]', newIndex)
+    setActiveWidgetIdx(newIndex)
+    initWidgetData(element.id, element.name, newIndex)
   } else if (evt.moved) {
     const { element, newIndex, oldIndex } = evt.moved
-    console.log('moved: ', element.name, newIndex, oldIndex)
+    console.log('[moved]: ', element.name, '[from] ', newIndex, '[to] ', oldIndex)
+    swapWidget(oldIndex, newIndex)
   }
 }
 
-const increaseId = () => {
-  const arr = uuid.value.split('-')
+const onSwap = (from: number, to: number) => {
+  let val1: any = usedWidgetList.value[from]
+  let val2: any = usedWidgetList.value[to]
+  usedWidgetList.value.splice(from, 1, val2)
+  usedWidgetList.value.splice(to, 1, val1)
+  val1 = val2 = null
+}
+
+const onRemove = (index: number) => {
+  usedWidgetList.value.splice(index, 1)
+}
+
+const cached: Recordable<WidgetItemType> = {}
+
+const initWidgetData = (id: string, name: string, index: number) => {
+  // TODO 缓存优化
+  if (cached[id]) return addWidget({ ...cached[id], id: uuid() }, index)
+  // 获取配置项
+  const widgetOption = propertyList.find(v => v.key === name)
+  // 初始化配置项表单值
+  if (!widgetOption) {
+    return console.warn(`It seems ${name} config data is missing.`)
+  }
+  const moduleForm: WidgetItemType = {
+    id: uuid(),
+    name
+  }
+  widgetOption.basic.forEach(item => {
+    moduleForm[item.name] = item.value
+  })
+  widgetOption.advance.forEach(item => {
+    moduleForm[item.name] = item.value
+  })
+  if (widgetOption.dispose.length) {
+    moduleForm.optionList = widgetOption.dispose
+  }
+  widgetOption.callback.forEach(item => {
+    moduleForm[item.name] = ''
+  })
+  // 简单深拷贝
+  cached[id] = JSON.parse(JSON.stringify(moduleForm))
+  addWidget(moduleForm, index)
+}
+
+const uuid = () => {
+  const arr = uid.split('-')
   let current = +arr[arr.length - 1]
   current++
   arr[arr.length - 1] = current + ''
-  return (uuid.value = arr.join('-'))
+  return (uid = arr.join('-'))
 }
 </script>
 
@@ -220,5 +257,17 @@ const increaseId = () => {
     text-align: center;
     transform: translateY(-50%);
   }
+}
+
+.rform.is-left :deep(.el-form-item__label) {
+  justify-content: flex-start;
+}
+
+.rform.is-center :deep(.el-form-item__label) {
+  justify-content: center;
+}
+
+.rform.is-right :deep(.el-form-item__label) {
+  justify-content: flex-end;
 }
 </style>

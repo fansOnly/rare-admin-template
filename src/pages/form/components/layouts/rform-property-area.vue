@@ -1,20 +1,20 @@
 <template>
   <div class="ns-form-designer-property">
     <div class="ns-fdp-bar">
-      <el-tabs v-model="activeTabName" @tab-click="handleClick">
-        <el-tab-pane label="组件属性" name="module"></el-tab-pane>
+      <el-tabs v-model="activeTabName">
+        <el-tab-pane label="组件属性" name="widget"></el-tab-pane>
         <el-tab-pane label="表单属性" name="form"></el-tab-pane>
       </el-tabs>
     </div>
     <div class="ns-fdp-main">
       <el-scrollbar :height="height - 56">
         <div class="ns-fdp-content" :style="{ 'min-height': height - 56 + 'px' }">
-          <div v-show="activeTabName === 'module'">
-            <form-module-conf v-if="activeModuleName" :module-name="activeModuleName" />
-            <div v-else class="ns-fdp-empty">当前没有组件被选中</div>
+          <div v-show="activeTabName === 'widget'">
+            <rform-widget-conf v-if="widgetIndex > -1" />
+            <div v-else class="ns-fdp-empty">请选择组件配置属性</div>
           </div>
           <div v-show="activeTabName === 'form'">
-            <form-property-conf />
+            <rform-property-conf />
           </div>
         </div>
       </el-scrollbar>
@@ -23,27 +23,29 @@
 </template>
 
 <script setup lang="ts">
-import FormModuleConf from './form-module-conf.vue'
-import FormPropertyConf from './form-property-conf.vue'
-import type { TabsPaneContext } from 'element-plus'
-import { formDesignKey } from '../utils/token'
+import RformWidgetConf from '../rform-widget-conf.vue'
+import RformPropertyConf from '../rform-property-conf.vue'
+import { useRform } from '../utils/use-rform'
+const { widgetIndex } = useRform()
 
 defineOptions({
-  name: 'FormDesignerProperty'
+  name: 'RformPropertyArea'
 })
 
 defineProps<{
   height: number
 }>()
 
-const formDesigner = inject(formDesignKey)
+const activeTabName = ref('widget')
 
-const activeModuleName = formDesigner?.activeModuleName
-
-const activeTabName = ref('module')
-const handleClick = (tab: TabsPaneContext, event: Event) => {
-  console.log(tab, event)
-}
+watch(
+  () => widgetIndex.value,
+  val => {
+    if (val > -1 && activeTabName.value === 'form') {
+      activeTabName.value = 'widget'
+    }
+  }
+)
 </script>
 
 <style lang="scss" scoped>

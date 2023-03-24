@@ -1,3 +1,5 @@
+import type { PropertyType } from '../utils/types'
+
 export default {
   key: 'input',
   basic: [
@@ -71,21 +73,23 @@ export default {
     },
     { name: 'clearable', type: 'switch', label: '可清除', value: true },
     { name: 'readonly', type: 'switch', label: '只读', value: false },
-    { name: 'disabled', type: 'switch', label: '禁用', value: false }
+    { name: 'disabled', type: 'switch', label: '禁用', value: false },
+    { name: 'customStyle', type: 'button', label: '自定义样式', value: 'css' }
   ],
+  dispose: [],
   advance: [
     { name: 'hide', type: 'switch', label: '隐藏组件', value: false },
     { name: 'minlength', type: 'inputNumber', label: '最小长度', value: 0, placeholder: '' },
-    { name: 'maxlength', type: 'inputNumber', label: '最大长度', value: 10, placeholder: '' },
+    { name: 'maxlength', type: 'inputNumber', label: '最大长度', value: 20, placeholder: '' },
     { name: 'showWordLimit', type: 'switch', label: '显示字数统计', value: false }
   ],
-  event: [
-    { name: 'created', type: 'button', label: 'onCreated' },
-    { name: 'mounted', type: 'button', label: 'onMounted' },
-    { name: 'input', type: 'button', label: 'onInput' },
-    { name: 'change', type: 'button', label: 'onChange' },
-    { name: 'focus', type: 'button', label: 'onFocus' },
-    { name: 'blur', type: 'button', label: 'onBlur' },
-    { name: 'clear', type: 'button', label: 'onClear' }
+  callback: [
+    { name: 'onCreated', type: 'button', label: 'onCreated', value: 'js' },
+    { name: 'onMounted', type: 'button', label: 'onMounted', value: 'js' },
+    { name: 'onInput', type: 'button', label: 'onInput', value: 'js' },
+    { name: 'onChange', type: 'button', label: 'onChange', value: 'js' },
+    { name: 'onFocus', type: 'button', label: 'onFocus', value: 'js' },
+    { name: 'onBlur', type: 'button', label: 'onBlur', value: 'js' },
+    { name: 'onClear', type: 'button', label: 'onClear', value: 'js' }
   ]
-}
+} as PropertyType
