@@ -15,8 +15,6 @@
 
 <script setup lang="ts">
 import type { WidgetItemType } from '../utils/types'
-import { useRform } from '../utils/use-rform'
-const { updateWidget } = useRform()
 
 defineOptions({
   name: 'InputImpl'
@@ -26,8 +24,5 @@ const props = defineProps<{
   data: WidgetItemType
 }>()
 
-const widgetData = computed({
-  get: () => props.data,
-  set: val => updateWidget({ ...props.data, val })
-})
+const widgetData = reactive(props.data)
 </script>

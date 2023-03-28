@@ -50,7 +50,7 @@ watch(
 
 <style lang="scss" scoped>
 .ns-form-designer-property {
-  min-width: var(--ns-fd-property-width);
+  width: var(--ns-fd-property-width);
   height: 100%;
   background: var(--el-bg-color);
 }

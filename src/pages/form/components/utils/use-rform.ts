@@ -40,9 +40,21 @@ const swapWidget = (from: number, to: number) => {
 }
 
 const setActiveWidgetIdx = (index: number) => {
+  console.time('activated')
   console.log('激活组件 index::', index)
   widgetIndex.value = index
+  nextTick(() => {
+    console.timeEnd('activated')
+  })
 }
+
+watch(
+  () => widgetData.value,
+  val => {
+    console.log('[debug] widgetData', val)
+  },
+  { deep: true }
+)
 
 const addWidget = (data: WidgetItemType, index: number) => {
   if (formJson.widgetList.findIndex(v => v.id === data.id) > -1) return

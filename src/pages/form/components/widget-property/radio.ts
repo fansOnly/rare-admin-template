@@ -34,6 +34,17 @@ export default {
       value: 'default',
       placeholder: ''
     },
+    {
+      name: 'block',
+      type: 'radioButton',
+      label: '组件布局',
+      options: [
+        { text: '行内', value: 'inline' },
+        { text: '块级', value: 'block' }
+      ],
+      value: 'inline',
+      placeholder: ''
+    },
     { name: 'value', type: 'hidden', label: '默认值', value: 'null', placeholder: '' },
     { name: 'isButton', type: 'switch', label: '按钮样式', value: false },
     { name: 'border', type: 'switch', label: '是否显示边框', value: false },

@@ -9,7 +9,7 @@ export interface FormJsonType {
   formConfig: Recordable
 }
 
-interface WidgetSubItemType {
+export interface WidgetOptionItemType {
   text: string
   value: string | number | boolean
 }
@@ -20,7 +20,7 @@ export interface WidgetOptionType {
   label: string
   value: string | number | boolean
   placeholder?: string
-  options?: WidgetSubItemType[]
+  options?: WidgetOptionItemType[]
 }
 
 export interface WidgetType {
@@ -34,7 +34,7 @@ export interface WidgetType {
 export interface PropertyType {
   key: string
   basic: WidgetOptionType[]
-  dispose: WidgetSubItemType[]
+  dispose: WidgetOptionItemType[]
   advance: WidgetOptionType[]
   callback: WidgetOptionType[]
 }

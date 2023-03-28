@@ -1,5 +1,9 @@
 <template>
-  <el-radio-group v-model="widgetData.value" :disabled="widgetData.disabled">
+  <el-radio-group
+    v-model="widgetData.value"
+    :disabled="widgetData.disabled"
+    :class="[widgetData.block === 'block' ? 'is-block' : null]"
+  >
     <template v-if="widgetData.isButton">
       <el-radio-button v-for="(sub, sidx) in widgetData.optionList" :key="sidx" :label="sub.value">
         {{ sub.text }}
@@ -35,3 +39,13 @@ const widgetData = computed({
   set: val => updateWidget({ ...props.data, val })
 })
 </script>
+
+<style scoped lang="scss">
+.el-radio-group.is-block {
+  display: block !important;
+
+  .el-radio {
+    display: block;
+  }
+}
+</style>

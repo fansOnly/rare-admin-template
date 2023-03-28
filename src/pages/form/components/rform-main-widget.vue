@@ -8,7 +8,7 @@
       :class="[`is-${widgetData.labelAlign}`]"
       :prop="widgetData.name"
     >
-      <component :is="widgetPropertyList[key]" :index="index" :data="widget" />
+      <component :is="widgetPropertyList[key]" :index="index" :data="widgetData" />
     </el-form-item>
     <div v-show="isActive" class="rform-widget-name">
       <el-icon size="12px">
@@ -36,18 +36,11 @@
 <script setup lang="ts">
 import widgetPropertyList from './widget-impl'
 import { useRform } from './utils/use-rform'
-const {
-  widgetData,
-  widgetList,
-  widgetIndex,
-  lastWidgetIdx,
-  setActiveWidgetIdx,
-  swapWidget,
-  removeWidget
-} = useRform()
+const { widgetList, widgetIndex, lastWidgetIdx, setActiveWidgetIdx, swapWidget, removeWidget } =
+  useRform()
 
 defineOptions({
-  name: 'RformWidgetImpl'
+  name: 'RformMainWidget'
 })
 const props = defineProps<{
   name: string
@@ -61,7 +54,7 @@ const emit = defineEmits<{
 
 const key = computed(() => props.name.substring(0, 1).toUpperCase() + props.name.slice(1) + 'Impl')
 const isActive = computed(() => widgetIndex.value === props.index)
-const widget = computed(() => widgetList[props.index])
+const widgetData = computed(() => widgetList[props.index])
 
 const onClickItem = () => {
   if (props.index === widgetIndex.value) return

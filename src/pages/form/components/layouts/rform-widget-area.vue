@@ -57,7 +57,8 @@ const activeNames = ref(['container', 'basic', 'advance'])
 
 <style lang="scss" scoped>
 .ns-form-designer-widget {
-  min-width: var(--ns-fd-widget-width);
+  flex-shrink: 0;
+  width: var(--ns-fd-widget-width);
   height: 100%;
   background: var(--el-bg-color);
 }

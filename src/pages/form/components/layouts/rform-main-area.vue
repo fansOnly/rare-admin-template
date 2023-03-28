@@ -59,7 +59,7 @@
               @change="onDragChange"
             >
               <template #item="{ element, index }">
-                <rform-widget-impl
+                <rform-main-widget
                   :name="element.name"
                   :title="element.title"
                   :index="index"
@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import RformWidgetImpl from '../rform-widget-impl.vue'
+import RformMainWidget from '../rform-main-widget.vue'
 import draggable from 'vuedraggable'
 import propertyList from '../widget-property'
 import { useId } from '@/hooks'
