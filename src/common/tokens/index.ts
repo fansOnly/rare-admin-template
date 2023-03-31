@@ -1,14 +1,14 @@
 // import type { InjectionKey, Ref } from 'vue'
 
-// export interface WidgetItemType {
+// export interface WidgetDataType {
 //   id: string
 //   [key: string]: unknown
 // }
 
 // export interface FormDesignContext {
-//   moduleData: Ref<Array<WidgetItemType>>
+//   moduleData: Ref<Array<WidgetDataType>>
 //   activeModuleIdx: Ref<number>
-//   updateModuleData: (data: WidgetItemType) => void
+//   updateModuleData: (data: WidgetDataType) => void
 // }
 
 // export const formDesignKey: InjectionKey<FormDesignContext> = Symbol()

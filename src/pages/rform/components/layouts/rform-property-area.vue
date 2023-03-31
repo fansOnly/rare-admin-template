@@ -20,13 +20,22 @@
       </el-scrollbar>
     </div>
   </div>
+  <code-dialog-editor
+    v-model:visible="codeData.visible"
+    :code-value="codeData.value"
+    :mode="codeData.mode"
+    :title="codeData.title"
+    :text="codeData.text"
+    @confirm="updateCodeData"
+  />
 </template>
 
 <script setup lang="ts">
+import CodeDialogEditor from '../code-editor/dialog-editor.vue'
 import RformWidgetConf from '../rform-widget-conf.vue'
 import RformPropertyConf from '../rform-property-conf.vue'
 import { useRform } from '../utils/use-rform'
-const { widgetIndex } = useRform()
+const { widgetIndex, codeData, updateCodeData } = useRform()
 
 defineOptions({
   name: 'RformPropertyArea'

@@ -34,7 +34,7 @@ export const useGlobalStore = defineStore('app', {
       asideWidth: '220px', // 侧边栏宽度
       menuMode: 'vertical', // horizontal
       config: {
-        size: 'large', // 表单组件的默认尺寸
+        size: 'default', // 表单组件的默认尺寸
         zIndex: 2000 // 弹出组件的层级
       },
       fullscreenLoading: {

@@ -8,4 +8,9 @@
 }
 body {
   background: var(--el-bg-color-page);
+  overflow: hidden;
+}
+
+.editor-dialog .el-dialog__body {
+  padding: 0 var(--el-dialog-padding-primary);
 }

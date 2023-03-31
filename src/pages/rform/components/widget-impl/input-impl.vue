@@ -14,14 +14,14 @@
 </template>
 
 <script setup lang="ts">
-import type { WidgetItemType } from '../utils/types'
+import type { WidgetDataType } from '../utils/types'
 
 defineOptions({
   name: 'InputImpl'
 })
 
 const props = defineProps<{
-  data: WidgetItemType
+  data: WidgetDataType
 }>()
 
 const widgetData = reactive(props.data)

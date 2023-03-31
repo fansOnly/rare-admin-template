@@ -141,8 +141,8 @@ export default [
         },
         // ----- 低代码表单
         {
-          path: '/form',
-          name: 'Form',
+          path: '/rform',
+          name: 'LowCodeForm',
           component: '',
           sortNum: 30,
           parentId: '',
@@ -155,9 +155,9 @@ export default [
           cache: '1'
         },
         {
-          path: '/form/designer',
+          path: '/rform/designer',
           name: 'FormDesigner',
-          component: 'form/designer',
+          component: 'rform/designer',
           sortNum: 10,
           parentId: 'M202109241417572092000000000529',
           menuId: 'M20210924141757209200000000052900001',
@@ -169,9 +169,9 @@ export default [
           cache: '1'
         },
         {
-          path: '/form/questionnaire',
+          path: '/rform/questionnaire',
           name: 'FormQuestionnaire',
-          component: 'form/questionnaire',
+          component: 'rform/questionnaire',
           sortNum: 20,
           parentId: 'M202109241417572092000000000529',
           menuId: 'M20210924141757209200000000052900002',

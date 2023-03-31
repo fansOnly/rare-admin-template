@@ -5,14 +5,14 @@ export default {
   basic: [
     {
       name: 'label',
-      type: 'input',
+      type: 'inputText',
       label: '标签文本',
       value: 'input',
       placeholder: '请输入标签文本'
     },
     {
       name: 'labelAlign',
-      type: 'radioButton',
+      type: 'radioButtonGroup',
       label: '标签对齐',
       options: [
         { text: '居左', value: 'left' },
@@ -34,10 +34,10 @@ export default {
     //   label: '切换密码显示',
     //   value: false
     // },
-    { name: 'value', type: 'input', label: '默认值', value: '', placeholder: '请输入默认值' },
+    { name: 'value', type: 'inputText', label: '默认值', value: '', placeholder: '请输入默认值' },
     {
       name: 'placeholder',
-      type: 'input',
+      type: 'inputText',
       label: '占位内容',
       value: '',
       placeholder: '请输入占位内容'
@@ -59,14 +59,14 @@ export default {
     { name: 'required', type: 'switch', label: '是否必填', value: false },
     {
       name: 'requiredMsg',
-      type: 'input',
+      type: 'inputText',
       label: '必填校验提示',
       value: '',
       placeholder: '请输入必填校验提示'
     },
     {
       name: 'errorMsg',
-      type: 'input',
+      type: 'inputText',
       label: '校验失败提示',
       value: '',
       placeholder: '请输入校验失败提示'
@@ -74,7 +74,7 @@ export default {
     { name: 'clearable', type: 'switch', label: '可清除', value: true },
     { name: 'readonly', type: 'switch', label: '只读', value: false },
     { name: 'disabled', type: 'switch', label: '禁用', value: false },
-    { name: 'customStyle', type: 'button', label: '自定义样式', value: 'css' }
+    { name: 'customStyle', type: 'button', label: '自定义样式', value: 'css', scope: 'component' }
   ],
   dispose: [],
   advance: [
@@ -84,12 +84,30 @@ export default {
     { name: 'showWordLimit', type: 'switch', label: '显示字数统计', value: false }
   ],
   callback: [
-    { name: 'onCreated', type: 'button', label: 'onCreated', value: 'js' },
-    { name: 'onMounted', type: 'button', label: 'onMounted', value: 'js' },
-    { name: 'onInput', type: 'button', label: 'onInput', value: 'js' },
-    { name: 'onChange', type: 'button', label: 'onChange', value: 'js' },
-    { name: 'onFocus', type: 'button', label: 'onFocus', value: 'js' },
-    { name: 'onBlur', type: 'button', label: 'onBlur', value: 'js' },
-    { name: 'onClear', type: 'button', label: 'onClear', value: 'js' }
+    {
+      name: 'onCreated',
+      type: 'button',
+      label: 'onCreated',
+      value: 'javascript',
+      scope: 'component'
+    },
+    {
+      name: 'onMounted',
+      type: 'button',
+      label: 'onMounted',
+      value: 'javascript',
+      scope: 'component'
+    },
+    { name: 'onInput', type: 'button', label: 'onInput', value: 'javascript', scope: 'component' },
+    {
+      name: 'onChange',
+      type: 'button',
+      label: 'onChange',
+      value: 'javascript',
+      scope: 'component'
+    },
+    { name: 'onFocus', type: 'button', label: 'onFocus', value: 'javascript', scope: 'component' },
+    { name: 'onBlur', type: 'button', label: 'onBlur', value: 'javascript', scope: 'component' },
+    { name: 'onClear', type: 'button', label: 'onClear', value: 'javascript', scope: 'component' }
   ]
 } as PropertyType

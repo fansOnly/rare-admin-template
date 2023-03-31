@@ -6,17 +6,17 @@
           <el-input v-model="widgetData.id" placeholder="请输入组件名称" disabled />
         </el-form-item>
         <template v-if="basicConfList!.length">
-          <rform-item-impl :options="basicConfList!" @edit="onEdit" />
+          <rform-widget-item-impl :options="basicConfList!" />
         </template>
       </template>
       <template v-if="disposeConfList!.length" #dispose>
-        <rform-option-item />
+        <rform-option-items />
       </template>
       <template v-if="advanceConfList!.length" #advance>
-        <rform-item-impl :options="advanceConfList!" @edit="onEdit" />
+        <rform-widget-item-impl :options="advanceConfList!" />
       </template>
       <template v-if="callbackConfList!.length" #callback>
-        <rform-item-impl :options="callbackConfList!" @edit="onEdit" />
+        <rform-widget-item-impl :options="callbackConfList!" />
       </template>
     </rform-property-impl>
   </el-form>
@@ -24,11 +24,11 @@
 
 <script setup lang="ts">
 import RformPropertyImpl from './rform-property-impl.vue'
-import RformItemImpl from './rform-item-impl.vue'
-import RformOptionItem from './rform-option-item.vue'
+import RformWidgetItemImpl from './rform-widget-item-impl.vue'
+import RformOptionItems from './rform-option-items.vue'
 import propertyList from './widget-property'
 import { useRform } from './utils/use-rform'
-const { widgetData, updateWidget } = useRform()
+const { widgetData } = useRform()
 
 defineOptions({
   name: 'RformWidgetConf'
@@ -42,10 +42,6 @@ const advanceConfList = computed(() => widgetOption.value?.advance.filter(v => v
 const callbackConfList = computed(() =>
   widgetOption.value?.callback.filter(v => v.type !== 'hidden')
 )
-
-const onEdit = (name: string) => {
-  console.log('编写代码片段::', name)
-}
 </script>
 
 <style lang="scss" scoped></style>

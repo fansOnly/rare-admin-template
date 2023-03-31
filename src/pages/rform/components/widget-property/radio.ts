@@ -5,14 +5,14 @@ export default {
   basic: [
     {
       name: 'label',
-      type: 'input',
+      type: 'inputText',
       label: '标签文本',
       value: 'radio',
       placeholder: '请输入标签文本'
     },
     {
       name: 'labelAlign',
-      type: 'radioButton',
+      type: 'radioButtonGroup',
       label: '标签对齐',
       options: [
         { text: '居左', value: 'left' },
@@ -36,7 +36,7 @@ export default {
     },
     {
       name: 'block',
-      type: 'radioButton',
+      type: 'radioButtonGroup',
       label: '组件布局',
       options: [
         { text: '行内', value: 'inline' },
@@ -53,20 +53,20 @@ export default {
     { name: 'required', type: 'switch', label: '是否必填', value: false },
     {
       name: 'requiredMsg',
-      type: 'input',
+      type: 'inputText',
       label: '必填校验提示',
       value: '',
       placeholder: '请输入必填校验提示'
     },
     {
       name: 'errorMsg',
-      type: 'input',
+      type: 'inputText',
       label: '校验失败提示',
       value: '',
       placeholder: '请输入校验失败提示'
     },
     { name: 'disabled', type: 'switch', label: '禁用', value: false },
-    { name: 'customStyle', type: 'button', label: '自定义样式', value: 'css' }
+    { name: 'customStyle', type: 'button', label: '自定义样式', value: 'css', scope: 'component' }
   ],
   dispose: [
     { text: 'radio1', value: '1' },
@@ -75,8 +75,20 @@ export default {
   ],
   advance: [],
   callback: [
-    { name: 'onCreated', type: 'button', label: 'onCreated', value: 'js' },
-    { name: 'onMounted', type: 'button', label: 'onMounted', value: 'js' },
-    { name: 'onChange', type: 'button', label: 'onChange', value: 'js' }
+    {
+      name: 'onCreated',
+      type: 'button',
+      label: 'onCreated',
+      value: 'javascript',
+      scope: 'component'
+    },
+    {
+      name: 'onMounted',
+      type: 'button',
+      label: 'onMounted',
+      value: 'javascript',
+      scope: 'component'
+    },
+    { name: 'onChange', type: 'button', label: 'onChange', value: 'javascript', scope: 'component' }
   ]
 } as PropertyType

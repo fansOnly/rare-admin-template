@@ -83,7 +83,7 @@ import RformMainWidget from '../rform-main-widget.vue'
 import draggable from 'vuedraggable'
 import propertyList from '../widget-property'
 import { useId } from '@/hooks'
-import type { WidgetType, WidgetItemType } from '../utils/types'
+import type { WidgetType, WidgetDataType } from '../utils/types'
 import { useRform } from '../utils/use-rform'
 const { formConfig, setActiveWidgetIdx, addWidget, swapWidget } = useRform()
 
@@ -124,7 +124,7 @@ const onRemove = (index: number) => {
   usedWidgetList.value.splice(index, 1)
 }
 
-const cached: Recordable<WidgetItemType> = {}
+const cached: Recordable<WidgetDataType> = {}
 
 const initWidgetData = (id: string, name: string, index: number) => {
   // TODO 缓存优化
@@ -135,15 +135,15 @@ const initWidgetData = (id: string, name: string, index: number) => {
   if (!widgetOption) {
     return console.warn(`It seems ${name} config data is missing.`)
   }
-  const moduleForm: WidgetItemType = {
+  const moduleForm: WidgetDataType = {
     id: uuid(),
     name
   }
   widgetOption.basic.forEach(item => {
-    moduleForm[item.name] = item.value
+    moduleForm[item.name] = item.type === 'button' ? '' : item.value
   })
   widgetOption.advance.forEach(item => {
-    moduleForm[item.name] = item.value
+    moduleForm[item.name] = item.type === 'button' ? '' : item.value
   })
   if (widgetOption.dispose.length) {
     moduleForm.optionList = widgetOption.dispose

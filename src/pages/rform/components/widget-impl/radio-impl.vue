@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import type { WidgetItemType } from '../utils/types'
+import type { WidgetDataType } from '../utils/types'
 import { useRform } from '../utils/use-rform'
 const { updateWidget } = useRform()
 
@@ -31,7 +31,7 @@ defineOptions({
   name: 'RadioImpl'
 })
 const props = defineProps<{
-  data: WidgetItemType
+  data: WidgetDataType
 }>()
 
 const widgetData = computed({

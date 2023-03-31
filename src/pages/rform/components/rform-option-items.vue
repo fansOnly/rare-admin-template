@@ -48,7 +48,7 @@ import { useRform } from './utils/use-rform'
 const { widgetData } = useRform()
 
 defineOptions({
-  name: 'RformOptionItem'
+  name: 'RformOptionItems'
 })
 
 const onRemove = (index: number) => {
